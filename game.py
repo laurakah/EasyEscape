@@ -171,7 +171,3 @@ class Game():
             else:
                 self.print_msg(self.MSG["invalid action"], do_clear=True)
         self.print_msg(self.MSG["successfully escaped"], do_clear=True)
-
-if __name__ == "__main__":
-    game = Game()
-    game.start_game()
