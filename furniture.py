@@ -1,7 +1,6 @@
 from item import Item
 
 class Furniture(Item):
-    """docstring for Furniture."""
 
     def __init__(self, name):
         super(Furniture, self).__init__(name, "furniture")

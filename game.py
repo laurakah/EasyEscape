@@ -6,7 +6,6 @@ from door import Door
 from room import Room
 
 class Game():
-    """docstring for Game."""
 
     def __init__(self):
         self.map = Map()

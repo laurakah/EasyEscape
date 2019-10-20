@@ -1,5 +1,4 @@
 class GameState(object):
-    """docstring for GameState."""
 
     def __init__(self, start_room, target_room):
         self.start_room = start_room
