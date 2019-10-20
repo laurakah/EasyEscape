@@ -4,6 +4,7 @@ from key import Key
 from furniture import Furniture
 from door import Door
 from room import Room
+from sound import Sound as s
 
 class Game():
 
@@ -29,7 +30,15 @@ class Game():
             "what to examine": "What would you like to examine? >>> ",
             "go to next room": "Do you want to go to the next room? Enter 'yes' or 'no' >>> ",
             "examine or explore": "What would you like to do? Type 'explore' or 'examine'? >>> "
+        }
 
+        self.SOUNDS = {
+            "examination": "sounds/examination.wav",
+            "opening door": "sounds/opening_door.wav",
+            "unlocking door": "sounds/unlocking_door.wav",
+            "applause": "sounds/applause.wav",
+            "key found": "sounds/key_found.wav",
+            "locked door": "sounds/locked_door.wav"
         }
 
     def populate_map(self, map):
@@ -108,6 +117,7 @@ class Game():
     def _do_go_to_next_room(self):
         answer = input(self.MSG["go to next room"]).strip()
         if answer == "yes":
+            s.play_sound(self.SOUNDS["opening door"])
             return True
         return False
 
@@ -117,9 +127,11 @@ class Game():
 
     def _door_have_no_key(self):
         self.print_msg(self.MSG["locked door"])
+        s.play_sound(self.SOUNDS["locked door"])
 
     def _door_have_key(self):
         self.print_msg(self.MSG["unlock door"])
+        s.play_sound(self.SOUNDS["unlocking door"])
 
     def _furniture_key_found(self, item_examined):
         self.game_state.keys_collected.append(item_examined)
@@ -146,16 +158,19 @@ class Game():
         self.clear()
         item_examined = self._examine_item_found(item)
         if item.type == "door" and not item_examined:
-            self._door_without_key()
+            self._door_have_no_key()
         elif item.type == "door" and item_examined:
             self._door_have_key()
             next_room = self._get_next_room(item)
             if next_room and self._do_go_to_next_room():
                 self._update_current_room(next_room)
         elif item.type == "furniture" and not item_examined:
+            s.play_sound(self.SOUNDS["examination"])
             self._furniture_no_key_found()
         elif item.type == "furniture" and item_examined:
+            s.play_sound(self.SOUNDS["examination"])
             self._furniture_key_found(item_examined)
+            s.play_sound(self.SOUNDS["key found"])
 
     def start_game(self):
         self.print_msg(self.MSG["start game"], do_clear=True)
@@ -170,3 +185,4 @@ class Game():
             else:
                 self.print_msg(self.MSG["invalid action"], do_clear=True)
         self.print_msg(self.MSG["successfully escaped"], do_clear=True)
+        s.play_sound(self.SOUNDS["applause"])
