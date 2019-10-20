@@ -16,7 +16,7 @@ This game uses [aplay](https://linux.die.net/man/1/aplay).
 #### Sound credits
 examination sound: [150134](https://freesound.org/people/150134/)
 
-opening door: [insectorj](https://freesound.org/people/InspectorJ/)
+opening door: [inspectorj](https://freesound.org/people/InspectorJ/)
 
 unlocking door: [virtualwindow-co-za](https://freesound.org/people/170048@virtualwindow.co.za/)
 
