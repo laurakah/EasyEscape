@@ -5,7 +5,7 @@ A simple python escape room text game with audio.
 Start the game by navigating to the projects root folder on your terminal.
 
 Then call the game.py with python:
-`python game.py`
+`python main.py`
 
 
 #### Dependencies
